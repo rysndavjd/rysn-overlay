@@ -15,6 +15,15 @@ SLOT="0"
 KEYWORDS="~amd64"
 RESTRICT="mirror"
 
+DEPEND="sys-boot/grub
+		dev-libs/openssl
+		sys-boot/mokutil
+		sys-boot/efibootmgr
+		app-arch/libarchive[bzip2(+)]
+		net-misc/wget
+		sys-fs/squashfs-tools
+		app-crypt/sbsigntools"
+		
 src_install() {
     insinto /usr/sbin/
 	doins grub-mkmok.sh
