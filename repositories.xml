@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+
+<repostories version="1.0">
+  <repo quality="experimental" status="unofficial">
+    <name>rysn-overlay</name>
+    <description lang="en">Gentoo repo overlay for my random projects I make.</description>
+    <homepage>https://github.com/rysndavjd/rysn-overlay</homepage>
+    <source type="git">https://github.com/rysndavjd/rysn-overlay.git</source>
+  </repo>
+</repostories>
