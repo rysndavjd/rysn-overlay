@@ -20,7 +20,8 @@ DEPEND="sys-boot/grub
 		app-arch/libarchive[bzip2(+)]
 		net-misc/wget
 		sys-fs/squashfs-tools
-		app-crypt/sbsigntools"
+		app-crypt/sbsigntools
+		app-shells/bash"
 		
 src_install() {
     insinto /usr/sbin/
