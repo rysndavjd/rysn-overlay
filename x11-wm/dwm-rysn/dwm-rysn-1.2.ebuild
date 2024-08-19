@@ -87,6 +87,4 @@ src_install() {
 	emake DESTDIR="${D}" PREFIX="${EPREFIX}/usr" install
 
 	dodoc README
-
-	save_config config.h
 }
