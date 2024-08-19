@@ -48,7 +48,7 @@ DEPEND="
 	laptop? ( media-gfx/flameshot )
 	laptop? ( net-wireless/blueman )
 	laptop? ( x11-misc/cbatticon )
-	laptop? ( x11-apps/xbacklight )
+	laptop? ( sys-power/acpilight )
 	laptop? ( media-sound/pavucontrol )
 "
 
