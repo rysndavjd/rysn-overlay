@@ -17,7 +17,7 @@ IUSE="+drun test +windowmode X +wayland"
 RESTRICT="!test? ( test ) mirror"
 
 REQUIRED_USE="
-	|| ( X wayland 1)
+	|| ( X wayland )
 "
 
 BDEPEND="
