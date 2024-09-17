@@ -11,12 +11,14 @@ SRC_URI="https://github.com/rysndavjd/dwm-rysn/releases/download/${PV}/dwm-rysn-
 KEYWORDS="amd64"
 RESTRICT="mirror"
 
-IUSE="desktop laptop server xinerama"
+CONFIGS="desktop laptop server"
+IUSE="${CONFIGS} xinerama"
 
 LICENSE="MIT"
 SLOT="0"
 
 REQUIRED_USE="
+	^^ ( ${CONFIGS} )
 	desktop? ( !laptop )
 	desktop? ( !server )
 	laptop? ( !desktop )
@@ -38,41 +40,39 @@ DEPEND="
 	x11-apps/xsetroot
 	gnome-extra/polkit-gnome
 	app-shells/bash
-	desktop? ( media-sound/pasystray )
-	desktop? ( gnome-extra/nm-applet )
-	desktop? ( media-gfx/flameshot )
-	desktop? ( net-wireless/blueman )
-	desktop? ( media-sound/pavucontrol )
-	laptop? ( media-sound/pasystray )
-	laptop? ( gnome-extra/nm-applet )
-	laptop? ( media-gfx/flameshot )
-	laptop? ( net-wireless/blueman )
-	laptop? ( x11-misc/cbatticon )
-	laptop? ( sys-power/acpilight )
-	laptop? ( media-sound/pavucontrol )
+	desktop? (  
+				media-sound/pasystray 
+	    		gnome-extra/nm-applet
+				media-gfx/flameshot 
+				net-wireless/blueman 
+				media-sound/pavucontrol 
+	)
+	laptop? ( 
+				media-sound/pasystray 
+				gnome-extra/nm-applet 
+				media-gfx/flameshot 
+				net-wireless/blueman 
+				x11-misc/cbatticon 
+				sys-power/acpilight 
+				media-sound/pavucontrol 
+	)
 "
 
 src_prepare() {
 	default
 
-	if use desktop ; then
-		ln -sr "config-desktop.h" "config.h" || die "config-desktop.h not found"
-	fi
-	
-	if use laptop ; then
-	ln -sr "config-laptop.h" "config.h" || die "config-laptop.h not found"
-	fi
-	
-	if use server ; then
-	ln -sr "config-server.h" "config.h" || die "config-server.h not found"
-	fi
+	for num in $CONFIGS ; do
+		if use $num ; then
+		ln -sr "config-$num.h" "config.h" || die "config-$num.h not found"
+		fi
+	done
 
 	sed -i \
 		-e "s/ -Os / /" \
 		-e "/^\(LDFLAGS\|CFLAGS\|CPPFLAGS\)/{s| = | += |g;s|-s ||g}" \
 		-e "/^X11LIB/{s:/usr/X11R6/lib:/usr/$(get_libdir)/X11:}" \
 		-e '/^X11INC/{s:/usr/X11R6/include:/usr/include/X11:}' \
-		config.mk || die
+		config.mk || die "Changing libs failed"
 }
 
 src_compile() {
