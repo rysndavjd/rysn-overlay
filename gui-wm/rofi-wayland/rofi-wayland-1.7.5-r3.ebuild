@@ -56,13 +56,12 @@ DEPEND="
 "
 
 src_configure() {
-	local emesonargs=(
+	local emesonargs+=(
 			-Dcheck=disabled
-                        $(meson_use X xcb)
-                        $(meson_use wayland)
 			$(meson_use drun)
 			$(meson_use windowmode window)
-			$(meson_feature test check)
+			$(meson_feature wayland)
+			$(meson_feature X xcb)
 	)
 	meson_src_configure
 }
