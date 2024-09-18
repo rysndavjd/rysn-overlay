@@ -56,27 +56,10 @@ DEPEND="
 "
 
 src_configure() {
-	if use wayland ; then
-		local emesonargs+=(
-			-Dwayland=enabled
-		)
-	else
-		local emesonargs+=(
-			-Dwayland=disabled
-		)
-	fi
-	if use X ; then
-		local emesonargs+=(
-			-Dxcb=enabled
-		)
-	else
-		local emesonargs+=(
-			-Dxcb=disabled
-		)
-	fi
-
-	local emesonargs+=(
+	local emesonargs=(
 			-Dcheck=disabled
+                        $(meson_use X xcb)
+                        $(meson_use wayland)
 			$(meson_use drun)
 			$(meson_use windowmode window)
 			$(meson_feature test check)
