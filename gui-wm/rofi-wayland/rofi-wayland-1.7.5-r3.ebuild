@@ -13,8 +13,8 @@ KEYWORDS="amd64 x86"
 
 LICENSE="MIT"
 SLOT="0"
-IUSE="+drun test +windowmode X +wayland"
-RESTRICT="!test? ( test ) mirror"
+IUSE="+drun +windowmode X +wayland"
+RESTRICT="mirror"
 
 REQUIRED_USE="
 	|| ( X wayland )
@@ -53,8 +53,6 @@ DEPEND="
 	X? (
 		x11-base/xorg-proto
 	)
-	
-	test? ( >=dev-libs/check-0.11 )
 "
 
 src_configure() {
