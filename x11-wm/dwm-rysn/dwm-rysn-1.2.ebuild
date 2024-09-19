@@ -41,20 +41,20 @@ DEPEND="
 	gnome-extra/polkit-gnome
 	app-shells/bash
 	desktop? (  
-				media-sound/pasystray 
-	    		gnome-extra/nm-applet
-				media-gfx/flameshot 
-				net-wireless/blueman 
-				media-sound/pavucontrol 
+			media-sound/pasystray 
+	    	gnome-extra/nm-applet
+			media-gfx/flameshot 
+			net-wireless/blueman 
+			media-sound/pavucontrol 
 	)
 	laptop? ( 
-				media-sound/pasystray 
-				gnome-extra/nm-applet 
-				media-gfx/flameshot 
-				net-wireless/blueman 
-				x11-misc/cbatticon 
-				sys-power/acpilight 
-				media-sound/pavucontrol 
+			media-sound/pasystray 
+			gnome-extra/nm-applet 
+			media-gfx/flameshot 
+			net-wireless/blueman 
+			x11-misc/cbatticon 
+			sys-power/acpilight 
+			media-sound/pavucontrol 
 	)
 "
 

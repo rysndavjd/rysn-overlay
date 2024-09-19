@@ -5,22 +5,26 @@ EAPI=8
 
 inherit toolchain-funcs
 
-MY_PV="${PV/_rc/-rc}"
-MY_P="${PN}-v${MY_PV}"
-SRC_URI="https://codeberg.org/${PN}/${PN}/releases/download/v${MY_PV}/${MY_P}.tar.gz"
-S="${WORKDIR}/${MY_P}"
-#KEYWORDS="~amd64 ~x86"
-
+SRC_URI="https://github.com/rysndavjd/${PN}/releases/download/${PV}/${PN}-${PV}.tar.gz"
+KEYWORDS="~amd64"
 DESCRIPTION="dwm for Wayland with my patches included."
 HOMEPAGE="https://github.com/rysndavjd/dwl-rysn"
+RESTRICT="mirror"
+
+CONFIGS="desktop laptop"
+IUSE="${CONFIGS} X"
 
 LICENSE="CC0-1.0 GPL-3+ MIT"
 SLOT="0"
-IUSE="X"
+
+REQUIRED_USE="
+	^^ ( ${CONFIGS} )
+	desktop? ( !laptop )
+	laptop? ( !desktop )
+"
 
 COMMON_DEPEND="
-	>=gui-libs/wlroots-0.18:=[libinput,session,X?]
-	<gui-libs/wlroots-0.19:="
+	=gui-libs/wlroots-0.18:=[libinput,session,X?]
 	dev-libs/libinput:=
 	dev-libs/wayland
 	x11-libs/libxkbcommon
@@ -32,6 +36,15 @@ COMMON_DEPEND="
 
 RDEPEND="
 	${COMMON_DEPEND}
+	app-shells/bash
+	gnome-extra/polkit-gnome
+	net-wireless/blueman
+	media-sound/pavucontrol[X?]
+
+	laptop? (
+		sys-power/acpilight
+	)
+
 	X? (
 		x11-base/xwayland
 	)
@@ -52,7 +65,13 @@ src_prepare() {
 }
 
 src_compile() {
+	for num in $CONFIGS ; do
+		if use $num ; then
+			config="$num"
+		fi
+	done
 	emake PKG_CONFIG="$(tc-getPKG_CONFIG)" CC="$(tc-getCC)" \
+		CONFIG="$config" \
 		XWAYLAND="$(usev X -DXWAYLAND)" XLIBS="$(usev X "xcb xcb-icccm")" dwl
 }
 
