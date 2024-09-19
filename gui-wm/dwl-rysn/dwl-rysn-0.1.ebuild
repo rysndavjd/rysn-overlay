@@ -24,7 +24,7 @@ REQUIRED_USE="
 "
 
 COMMON_DEPEND="
-	=gui-libs/wlroots-0.18:=[libinput,session,X?]
+	=gui-libs/wlroots-0.18.0:=[libinput,session,X?]
 	dev-libs/libinput:=
 	dev-libs/wayland
 	x11-libs/libxkbcommon
