@@ -78,4 +78,5 @@ src_compile() {
 src_install() {
 	emake DESTDIR="${D}" PREFIX="${EPREFIX}/usr" install
 	dodoc CHANGELOG.md README.md
+	elog "Remember the .bash_profile at /usr/share/dwl-rysn/"
 }
