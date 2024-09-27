@@ -15,8 +15,6 @@ SLOT="0"
 KEYWORDS="amd64"
 
 RDEPEND="
-	acct-group/slock
-	acct-user/slock
 	sys-auth/polkit[daemon]
 	sys-auth/polkit-gnome
 	virtual/libcrypt:=
