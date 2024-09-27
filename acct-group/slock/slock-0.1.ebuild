@@ -3,9 +3,6 @@
 
 EAPI=8
 
-inherit acct-user
+inherit acct-group
 
-ACCT_USER_ID=998
-ACCT_USER_GROUPS=( slock )
-
-acct-user_add_deps
+ACCT_GROUP_ID=998

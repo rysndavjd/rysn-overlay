@@ -26,6 +26,8 @@ DEPEND="
 	${RDEPEND}
 	!x11-misc/slock
 	x11-base/xorg-proto
+	acct-group/slock
+	acct-user/slock
 "
 
 src_prepare() {
