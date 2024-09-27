@@ -8,7 +8,7 @@ inherit toolchain-funcs
 DESCRIPTION="DWM with my patches included."
 HOMEPAGE="https://github.com/rysndavjd/dwm-rysn"
 SRC_URI="https://github.com/rysndavjd/dwm-rysn/releases/download/${PV}/dwm-rysn-${PV}.tar.gz"
-KEYWORDS=""
+KEYWORDS="amd64"
 RESTRICT="mirror"
 
 CONFIGS="desktop laptop server"
@@ -31,14 +31,10 @@ RDEPEND="
 	media-libs/fontconfig
 	x11-libs/libX11
 	>=x11-libs/libXft-2.3.5
-"
-DEPEND="
-	${RDEPEND}
-	x11-base/xorg-proto
+	gnome-extra/polkit-gnome
+	x11-apps/xsetroot
 	x11-misc/slock-rysn
 	x11-apps/xrandr
-	x11-apps/xsetroot
-	gnome-extra/polkit-gnome
 	app-shells/bash
 	desktop? (  
 			media-sound/pasystray 
@@ -56,6 +52,10 @@ DEPEND="
 			sys-power/acpilight 
 			media-sound/pavucontrol 
 	)
+"
+DEPEND="
+	${RDEPEND}
+	x11-base/xorg-proto
 "
 
 src_prepare() {
