@@ -18,9 +18,9 @@ RESTRICT="mirror"
 
 S=${WORKDIR}/ds4drv-rysn-0.5.1
 
-DEPEND() {
+DEPEND="
     dev-python/pyudev
-}
+"
 
 python_install() {
     distutils-r1_python_install
