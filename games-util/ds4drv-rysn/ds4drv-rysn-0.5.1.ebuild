@@ -18,7 +18,8 @@ RESTRICT="mirror"
 
 S=${WORKDIR}/ds4drv-rysn-0.5.1
 
-src_install() {
+python_install() {
+    distutils-r1_python_install
     insinto /lib/udev/rules.d
     doins udev/50-ds4drv.rules
     insinto /etc
