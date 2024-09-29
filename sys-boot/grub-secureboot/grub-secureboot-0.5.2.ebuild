@@ -5,8 +5,7 @@ EAPI=8
 
 HOMEPAGE="https://github.com/rysndavjd/grub-secureboot"
 DESCRIPTION="Script for secureboot with grub and shim for x86_64"
-SRC_URI="https://github.com/rysndavjd/grub-secureboot/releases/download/0.4/grub-secureboot-0.4.tar.gz"
-S="${WORKDIR}/"
+SRC_URI="https://github.com/rysndavjd/grub-secureboot/releases/download/${PV}/grub-secureboot-${PV}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -21,10 +20,9 @@ DEPEND="sys-boot/grub
 		net-misc/wget
 		sys-fs/squashfs-tools
 		app-crypt/sbsigntools
-		app-shells/bash"
-		
-src_install() {
-    insinto /usr/sbin/
-	doins grub-mkmok.sh
-	doins grub-mksecureboot.sh
+		app-shells/bash
+"
+
+src_install() {	
+	emake DESTDIR="${D}" PREFIX="${EPREFIX}/usr" install
 }
