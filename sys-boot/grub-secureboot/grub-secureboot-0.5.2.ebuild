@@ -21,6 +21,7 @@ DEPEND="sys-boot/grub
 		sys-fs/squashfs-tools
 		app-crypt/sbsigntools
 		app-shells/bash
+		sys-boot/shim
 "
 
 src_install() {	
