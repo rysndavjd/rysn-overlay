@@ -20,6 +20,7 @@ S=${WORKDIR}/ds4drv-rysn-0.5.1
 
 DEPEND="
     dev-python/pyudev
+    net-wireless/bluez[deprecated]
 "
 
 python_install() {
