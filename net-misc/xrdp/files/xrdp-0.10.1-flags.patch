@@ -1,0 +1,16 @@
+diff -ruN xrdp-0.10.1.orig/configure.ac xrdp-0.9.23.1/configure.ac
+--- xrdp-0.10.1.orig/configure.ac	2024-10-05 15:01:42.289011761 +0200
++++ xrdp-0.10.1/configure.ac	2024-10-05 15:09:16.072996031 +0200
+@@ -214,13 +214,6 @@
+ AX_APPEND_COMPILE_FLAGS([-Wwrite-strings])
+ AX_APPEND_COMPILE_FLAGS([-Wmissing-prototypes], ,[-Werror])
+ 
+-AM_COND_IF([LINUX],
+-  [AX_APPEND_COMPILE_FLAGS([-Werror])]) # bsd has warnings that have not been fixed yet
+-
+-AM_COND_IF([DEVEL_DEBUG],
+-  [AX_APPEND_COMPILE_FLAGS([-g -O0])],
+-  [AX_APPEND_COMPILE_FLAGS([-O2])])
+-
+ # Function setusercontext() is in BSD -lutil but N/A on Solaris or GNU systems
+ AC_SEARCH_LIBS([setusercontext], [util])
