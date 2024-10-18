@@ -11,7 +11,7 @@ LICENSE="LGPL-3"
 SLOT="0"
 RESTRICT="mirror"
 
-IUSE="qt5 gtk2"
+IUSE="qt5 +gtk2"
 REQUIRED_USE="^^ ( qt5 gtk2 )"
 KEYWORDS="amd64"
 
