@@ -40,5 +40,5 @@ src_install() {
 	insinto /usr
 	doins -r usr/share
 	dosym /usr/share /usr/lib/peazip/res/share
-	dosym /usr/lib/peazip/bin/peazip /usr/bin/peazip
+	dosym /usr/lib/peazip/peazip /usr/bin/peazip
 }
