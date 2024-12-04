@@ -8,10 +8,10 @@ inherit toolchain-funcs
 DESCRIPTION="DWM with my patches included."
 HOMEPAGE="https://github.com/rysndavjd/dwm-rysn"
 SRC_URI="https://github.com/rysndavjd/dwm-rysn/releases/download/${PV}/dwm-rysn-${PV}.tar.gz"
-KEYWORDS="amd64"
+KEYWORDS="amd64 arm64"
 RESTRICT="mirror"
 
-CONFIGS="desktop laptop server"
+CONFIGS="desktop laptop server mac"
 IUSE="${CONFIGS} xinerama"
 
 LICENSE="MIT"
@@ -21,10 +21,16 @@ REQUIRED_USE="
 	^^ ( ${CONFIGS} )
 	desktop? ( !laptop )
 	desktop? ( !server )
+	desktop? ( !mac )
 	laptop? ( !desktop )
 	laptop? ( !server )
+	laptop? ( !mac )
 	server? ( !desktop )
 	server? ( !laptop )
+	server? ( !mac )
+	mac? ( !desktop )
+	mac? ( !laptop )
+	mac? ( !server )
 "
 
 RDEPEND="
@@ -42,6 +48,7 @@ RDEPEND="
 			media-gfx/flameshot 
 			net-wireless/blueman 
 			media-sound/pavucontrol 
+			media-libs/libpulse
 	)
 	laptop? ( 
 			media-sound/pasystray 
@@ -51,6 +58,16 @@ RDEPEND="
 			x11-misc/cbatticon 
 			sys-power/acpilight 
 			media-sound/pavucontrol 
+			media-libs/libpulse
+	)
+	mac? (
+			media-sound/pasystray 
+			gnome-extra/nm-applet 
+			net-wireless/blueman 
+			x11-misc/cbatticon 
+			sys-power/cpplighty 
+			media-sound/pavucontrol 
+			media-libs/libpulse	
 	)
 "
 DEPEND="
@@ -63,7 +80,7 @@ src_prepare() {
 
 	for num in $CONFIGS ; do
 		if use $num ; then
-		ln -sr "config-$num.h" "config.h" || die "config-$num.h not found"
+			ln -sr "config-$num.h" "config.h" || die "config-$num.h not found"
 		fi
 	done
 
