@@ -19,8 +19,9 @@ RESTRICT="mirror"
 S=${WORKDIR}/ds4drv-rysn-0.5.1
 
 DEPEND="
-    dev-python/pyudev
-    net-wireless/bluez[deprecated]
+    >=dev-python/pyudev-0.16
+    >=dev-python/evdev-0.3.0
+    >=net-wireless/bluez-5.14[deprecated]
 "
 
 python_install() {
