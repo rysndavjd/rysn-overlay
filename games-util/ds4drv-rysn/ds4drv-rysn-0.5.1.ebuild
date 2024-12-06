@@ -27,8 +27,7 @@ DEPEND="
 
 python_install() {
     distutils-r1_python_install
-    insinto /lib/udev/rules.d
-    doins udev/50-ds4drv.rules
+    udev_dorules ${S}/udev/50-ds4drv.rules
     insinto /etc
     doins ds4drv.conf
 }
