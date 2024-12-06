@@ -22,6 +22,7 @@ DEPEND="
     >=dev-python/pyudev-0.16
     >=dev-python/evdev-0.3.0
     >=net-wireless/bluez-5.14[deprecated]
+    dev-lang/python[bluetooth]
 "
 
 python_install() {
