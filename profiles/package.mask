@@ -1,2 +1,2 @@
 # Masking out my tailscale ebuild as it is kinda broken
-=net-vpn/tailscale::rysn-overlay
+=net-vpn/tailscale-1.76.6
