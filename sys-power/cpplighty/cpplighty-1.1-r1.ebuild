@@ -30,6 +30,16 @@ src_install() {
 }
 
 pkg_postinst() {
+    einfo
+	elog "To use the cpplighty as a normal user, you must be a part of the video group"
+    einfo
+	elog "To enable saving and restoring of the brightness level add cpplighty"
+	elog "to the boot runlevel. Like so:"
+	elog "# rc-update add cpplighty boot"
+    einfo
+    elog "By default cpplighty service does not save/restore any devices,"
+    elog "you will have to configure /etc/conf.d/cpplighty."
+	einfo
 	udev_reload
 }
 
