@@ -3,13 +3,13 @@
 
 EAPI=8
 
-HOMEPAGE="https://github.com/rysndavjd/grub-secureboot"
+HOMEPAGE="https://github.com/rysndavjd/grub-mksecureboot"
 DESCRIPTION="Script for secureboot with grub and shim for x86_64"
-SRC_URI="https://github.com/rysndavjd/grub-secureboot/releases/download/${PV}/grub-secureboot-${PV}.tar.gz"
+SRC_URI="https://github.com/rysndavjd/grub-mksecureboot/releases/download/${PV}/grub-mksecureboot-${PV}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="amd64"
 RESTRICT="mirror"
 
 DEPEND="sys-boot/grub
@@ -17,7 +17,6 @@ DEPEND="sys-boot/grub
 		sys-boot/mokutil
 		sys-boot/efibootmgr
 		app-arch/libarchive[bzip2(+)]
-		net-misc/wget
 		sys-fs/squashfs-tools
 		app-crypt/sbsigntools
 		app-shells/bash
