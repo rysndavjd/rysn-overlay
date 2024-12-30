@@ -11,8 +11,8 @@ SRC_URI="https://github.com/neutrinolabs/xrdp/releases/download/v${PV}/${P}.tar.
 
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS="amd64 ~x86"
-IUSE="aac debug fuse ipv6 kerberos jpeg lame opus pam pixman pulseaudio"
+KEYWORDS="~amd64 ~x86"
+IUSE="aac debug fuse ipv6 kerberos jpeg lame opus pam pixman pulseaudio x264 openh264"
 RESTRICT="mirror"
 
 RDEPEND="dev-libs/openssl:0=
@@ -20,7 +20,7 @@ RDEPEND="dev-libs/openssl:0=
 	x11-libs/libXfixes:0=
 	x11-libs/libXrandr:0=
 	aac? ( media-libs/fdk-aac:0= )
-	fuse? ( sys-fs/fuse:0= )
+	fuse? ( >sys-fs/fuse-3.1.0:0= )
 	jpeg? ( virtual/jpeg:0= )
 	kerberos? ( virtual/krb5:0= )
 	lame? ( media-sound/lame:0= )
@@ -28,6 +28,8 @@ RDEPEND="dev-libs/openssl:0=
 	pam? ( sys-libs/pam:0= )
 	pixman? ( x11-libs/pixman:0= )
 	pulseaudio? ( media-sound/pulseaudio:0= )
+    x264? ( media-libs/x264:0= )
+    openh264? ( >=media-libs/openh264-2.0.0:0= )
 "
 BDEPEND="${RDEPEND}
 	virtual/pkgconfig
@@ -35,7 +37,7 @@ BDEPEND="${RDEPEND}
 PDEPEND="
 	|| (
 		net-misc/tigervnc[server]
-		net-misc/xorgxrdp
+		>=net-misc/xorgxrdp-0.10.3
 	)
 "
 
@@ -52,7 +54,7 @@ src_prepare() {
 	default
 
 	# disallow root login by default
-	sed -i -e '/^AllowRootLogin/s/true/false/' sesman/sesman.ini || die
+	sed -i -e '/^AllowRootLogin/s/true/false/' sesman/sesman.ini.in || die
 
 	eautoreconf
 }
@@ -94,6 +96,8 @@ src_configure() {
 		$(usex opus --enable-opus '')
 		$(usex lame --enable-mp3lame '')
 		$(usex pixman --enable-pixman '')
+        $(usex x264 --enable-x264 '')
+        $(usex openh264 --enable-openh264 '')
 	)
 
 	econf "${myconf[@]}"
