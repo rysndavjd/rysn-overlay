@@ -11,16 +11,16 @@ inherit distutils-r1 pypi udev
 
 DESCRIPTION="ds4drv with my patches included."
 HOMEPAGE="https://github.com/rysndavjd/ds4drv-rysn"
-SRC_URI="https://github.com/rysndavjd/ds4drv-rysn/archive/refs/tags/0.5.1.tar.gz"
+SRC_URI="https://github.com/rysndavjd/ds4drv-rysn/archive/refs/tags/0.5.1-r1.tar.gz"
 KEYWORDS="amd64 arm64"
 SLOT=0
 RESTRICT="mirror"
 
-S=${WORKDIR}/ds4drv-rysn-0.5.1
+S=${WORKDIR}/ds4drv-rysn-0.5.1-r1
 
 DEPEND="
     >=dev-python/pyudev-0.16
-    <=dev-python/evdev-1.9.0
+    >=dev-python/evdev-1.9.0
     >=net-wireless/bluez-5.14[deprecated]
     dev-lang/python[bluetooth]
 "
