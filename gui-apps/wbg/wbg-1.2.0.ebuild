@@ -27,6 +27,7 @@ RDEPEND="
 	png? ( >=media-libs/libpng-1.6.41 )
 	webp? ( >=media-libs/libwebp-1.3.0 )
 "
+
 BDEPEND="
 	dev-libs/wayland-protocols
 	dev-util/wayland-scanner
