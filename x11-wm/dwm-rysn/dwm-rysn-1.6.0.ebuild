@@ -42,6 +42,15 @@ RDEPEND="
     x11-misc/slock-rysn
     x11-apps/xrandr
     app-shells/bash
+    media-gfx/feh[xinerama?]
+    media-video/pipewire[pipewire-alsa,sound-server,jack-sdk,dbus]
+    sys-apps/dbus
+    x11-misc/wmname
+    x11-apps/xset
+    x11-apps/xrdb
+    media-fonts/cantarell[X]
+    media-fonts/symbols-nerd-font[X]
+    x11-themes/papirus-icon-theme
     desktop? (  
             media-sound/pasystray 
             gnome-extra/nm-applet
@@ -81,6 +90,7 @@ src_prepare() {
     for num in $CONFIGS ; do
         if use $num ; then
             ln -sr "config-$num.h" "config.h" || die "config-$num.h not found"
+            sed -i 's/^CONFIG=.*/CONFIG='$num'/' config.mk
         fi
     done
 
