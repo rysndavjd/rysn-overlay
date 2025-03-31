@@ -51,6 +51,8 @@ RDEPEND="
     media-fonts/cantarell[X]
     media-fonts/symbols-nerd-font[X]
     x11-themes/papirus-icon-theme
+    x11-misc/rofi
+    x11-themes/gnome-themes-standard
     desktop? (  
             media-sound/pasystray 
             gnome-extra/nm-applet
