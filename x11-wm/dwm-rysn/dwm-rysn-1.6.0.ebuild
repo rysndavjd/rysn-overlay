@@ -48,6 +48,7 @@ RDEPEND="
     x11-misc/wmname
     x11-apps/xset
     x11-apps/xrdb
+    x11-misc/xsettingsd
     media-fonts/cantarell[X]
     media-fonts/symbols-nerd-font[X]
     x11-themes/papirus-icon-theme
