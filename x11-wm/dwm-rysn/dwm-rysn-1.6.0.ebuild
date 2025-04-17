@@ -60,7 +60,6 @@ RDEPEND="
             media-gfx/flameshot 
             net-wireless/blueman 
             media-sound/pavucontrol 
-            media-libs/libpulse
     )
     laptop? ( 
             media-sound/pasystray 
@@ -70,7 +69,6 @@ RDEPEND="
             x11-misc/cbatticon 
             sys-power/cpplighty 
             media-sound/pavucontrol 
-            media-libs/libpulse
     )
     mac? (
             media-sound/pasystray 
@@ -79,7 +77,6 @@ RDEPEND="
             x11-misc/cbatticon 
             sys-power/cpplighty 
             media-sound/pavucontrol 
-            media-libs/libpulse	
     )
 "
 DEPEND="
