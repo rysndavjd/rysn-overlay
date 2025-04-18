@@ -3,19 +3,6 @@
 
 EAPI=8
 
-inherit cargo
-
-DESCRIPTION=""
-HOMEPAGE=""
-LICENSE="GPL-2"
-LICENSE+=" MIT Unicode-3.0"
-SLOT="0"
-RESTRICT="mirror"
-
-IUSE=""
-REQUIRED_USE=""
-KEYWORDS="amd64 arm64"
-
 CRATES="
 	anstream@0.6.18
 	anstyle-parse@0.2.6
@@ -47,6 +34,19 @@ CRATES="
 	windows_x86_64_gnullvm@0.52.6
 	windows_x86_64_msvc@0.52.6
 "
+
+inherit cargo
+
+DESCRIPTION=""
+HOMEPAGE=""
+LICENSE="GPL-2"
+LICENSE+=" MIT Unicode-3.0"
+SLOT="0"
+RESTRICT="mirror"
+
+IUSE=""
+REQUIRED_USE=""
+KEYWORDS="amd64 arm64"
 
 SRC_URI="
 	${CARGO_CRATE_URIS}
