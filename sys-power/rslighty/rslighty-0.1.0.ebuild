@@ -35,7 +35,7 @@ CRATES="
 	windows_x86_64_msvc@0.52.6
 "
 
-inherit cargo
+inherit cargo udev
 
 DESCRIPTION=""
 HOMEPAGE=""
@@ -70,4 +70,17 @@ src_compile() {
 
 src_install() {
 	cargo_src_install
+	udev_dorules "${S}"/50-rslighty.rules
+
+}
+
+pkg_postinst() {
+    einfo
+	elog "To use the rslighty as a normal user, you must be a part of the video group"
+    einfo
+	udev_reload
+}
+
+pkg_postrm() {
+	udev_reload
 }
