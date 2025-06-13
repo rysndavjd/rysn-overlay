@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS="amd64 arm64"
 
 RDEPEND="
-	sys-auth/polkit[daemon]
+	sys-auth/polkit
 	gnome-extra/polkit-gnome
 	virtual/libcrypt:=
 	x11-libs/libX11
