@@ -11,33 +11,31 @@ SRC_URI="https://github.com/rysndavjd/dwm-rysn/releases/download/${PV}/dwm-rysn-
 KEYWORDS="amd64 arm64"
 RESTRICT="mirror"
 
-CONFIGS="desktop laptop server mac"
-IUSE="${CONFIGS} xinerama"
+CONFIGS="desktop"
+POLKIT_GUI="polkit-gnome mate-polkit"
+IUSE="${CONFIGS} ${POLKIT_GUI} xinerama "
 
 LICENSE="MIT"
 SLOT="0"
 
 REQUIRED_USE="
     ^^ ( ${CONFIGS} )
-    desktop? ( !laptop )
-    desktop? ( !server )
-    desktop? ( !mac )
-    laptop? ( !desktop )
-    laptop? ( !server )
-    laptop? ( !mac )
-    server? ( !desktop )
-    server? ( !laptop )
-    server? ( !mac )
-    mac? ( !desktop )
-    mac? ( !laptop )
-    mac? ( !server )
+    ^^ ( ${POLKIT_GUI} )
 "
 
 RDEPEND="
     media-libs/fontconfig
     x11-libs/libX11
     >=x11-libs/libXft-2.3.5
-    gnome-extra/polkit-gnome
+
+    polkit-gnome? (
+        gnome-extra/polkit-gnome
+    )
+
+    mate-polkit? (
+        mate-extra/mate-polkit
+    )
+    
     x11-apps/xsetroot
     x11-misc/slock-rysn
     x11-apps/xrandr
@@ -52,30 +50,15 @@ RDEPEND="
     media-fonts/cantarell[X]
     media-fonts/symbols-nerd-font[X]
     x11-themes/papirus-icon-theme
-    x11-misc/rofi
+    x11-themes/adwaita-icon-theme
     x11-themes/gnome-themes-standard
+    x11-misc/rofi
+    x11-themes/rysn-wallpapers
     desktop? (  
             media-sound/pasystray 
             gnome-extra/nm-applet
             media-gfx/flameshot 
             net-wireless/blueman 
-            media-sound/pavucontrol 
-    )
-    laptop? ( 
-            media-sound/pasystray 
-            gnome-extra/nm-applet 
-            media-gfx/flameshot 
-            net-wireless/blueman 
-            x11-misc/cbatticon 
-            sys-power/cpplighty 
-            media-sound/pavucontrol 
-    )
-    mac? (
-            media-sound/pasystray 
-            gnome-extra/nm-applet 
-            net-wireless/blueman 
-            x11-misc/cbatticon 
-            sys-power/cpplighty 
             media-sound/pavucontrol 
     )
 "
@@ -87,13 +70,6 @@ DEPEND="
 src_prepare() {
     default
 
-    for num in $CONFIGS ; do
-        if use $num ; then
-            ln -sr "config-$num.h" "config.h" || die "config-$num.h not found"
-            sed -i 's/^CONFIG=.*/CONFIG='$num'/' config.mk
-        fi
-    done
-
     sed -i \
         -e "s/ -Os / /" \
         -e "/^\(LDFLAGS\|CFLAGS\|CPPFLAGS\)/{s| = | += |g;s|-s ||g}" \
@@ -103,15 +79,21 @@ src_prepare() {
 }
 
 src_compile() {
-    if use xinerama; then
-        emake CC="$(tc-getCC)" dwm
-    else
-        emake CC="$(tc-getCC)" XINERAMAFLAGS="" XINERAMALIBS="" dwm
-    fi
+    for config in $CONFIGS ; do
+        if use "$config" ; then
+            if use xinerama; then
+                emake CC="$(tc-getCC)" CONFIG="$config" dwm
+            else
+                emake CC="$(tc-getCC)" XINERAMAFLAGS="" XINERAMALIBS="" CONFIG="$config" dwm
+            fi
+        fi
+    done
 }
 
 src_install() {
-    emake DESTDIR="${D}" PREFIX="${EPREFIX}/usr" install
-
-    dodoc README
+    for config in $CONFIGS ; do
+        if use "$config" ; then
+            emake DESTDIR="${D}" PREFIX="${EPREFIX}/usr" CONFIG="$config" install
+        fi
+    done
 }
