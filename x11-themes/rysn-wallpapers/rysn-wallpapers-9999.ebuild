@@ -15,8 +15,8 @@ IUSE=""
 REQUIRED_USE=""
 KEYWORDS="amd64"
 
-SRC_URI="https://github.com/rysndavjd/wallpapers.git"
 EGIT_REPO_URI="https://github.com/rysndavjd/wallpapers.git"
+EGIT_BRANCH="main"
 
 DEPEND="
 "
