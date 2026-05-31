@@ -24,5 +24,6 @@ DEPEND="
 src_install() {
     insinto /usr/share/rysn-wallpapers
     doins *.png
+    doins *.jpg
 	fperms -R 755 /usr/share/rysn-wallpapers 
 }
